@@ -5,7 +5,6 @@ go 1.19
 require (
 	github.com/hairyhenderson/go-fsimpl v0.0.0-20221001180718-4a9895871b6b
 	github.com/spf13/cobra v1.5.0
-	github.com/spf13/pflag v1.0.5
 	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -69,6 +68,7 @@ require (
 	github.com/mattn/go-ieproxy v0.0.1 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/xanzy/ssh-agent v0.3.1 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	gocloud.dev v0.25.1-0.20220408200107-09b10f7359f7 // indirect
