@@ -19,6 +19,7 @@ import (
 
 var (
 	baseDir    string
+	plain      bool
 	profiles   []string
 	installCmd = &cobra.Command{
 		Use:   "install [flags] CONFIG VARIABLES",
@@ -61,26 +62,24 @@ func installCmdRun(cmd *cobra.Command, args []string) {
 	fd.Close()
 
 	log.Println(dots.List())
-	log.Println("open: ", args[1])
 	varFS := Must(mux.Lookup(path.Dir(args[1])))
 	fd = Must(varFS.Open(path.Base(args[1])))
 
 	defer fd.Close()
-
 	if err := vars.ReadIn(fd); err != nil {
 		log.Fatal(err)
 	}
 
 	if len(profiles) > 0 {
 		for _, name := range profiles {
-			if err := dots.Run(name, configFS, &godots.Variables{}, baseDir); err != nil {
+			if err := dots.Run(name, configFS, vars, baseDir); err != nil {
 				log.Print(err)
 			}
 		}
 		return
 	}
 
-	if err := dots.All(configFS, &godots.Variables{}, baseDir); err != nil {
+	if err := dots.All(configFS, vars, baseDir); err != nil {
 		log.Print(err)
 	}
 

@@ -15,7 +15,7 @@ func HasScheme(s string) bool {
 func AbsOrScheme(s string) string {
 	if !HasScheme(s) {
 		if !path.IsAbs(s) {
-			return path.Join(Must(os.Getwd()), s)
+			s = path.Join(Must(os.Getwd()), s)
 		}
 		return fmt.Sprintf("file:%s", s)
 	}
