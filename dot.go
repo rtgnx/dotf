@@ -49,7 +49,7 @@ func BaseWriter(root string) func(dst string) (io.WriteCloser, error) {
 		if err := os.MkdirAll(path.Dir(path.Join(root, dst)), 0o750); err != nil && !os.IsExist(err) {
 			return nil, err
 		}
-		return os.OpenFile(path.Join(root, dst), os.O_CREATE|os.O_WRONLY, 0o640)
+		return os.OpenFile(path.Join(root, dst), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o640)
 	}
 }
 
